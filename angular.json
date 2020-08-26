@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "publico": {
+    "socketchatapp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/publico",
+            "outputPath": "dist/socketchatapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +24,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "src/assets/bootstrap4/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/jquery/jquery.slim.min.js",
+              "src/assets/popper/popper.min.js",
+              "src/assets/fontawesome5/fontawesome.js",
+              "src/assets/bootstrap4/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -63,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "publico:build"
+            "browserTarget": "socketchatapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "publico:build:production"
+              "browserTarget": "socketchatapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "publico:build"
+            "browserTarget": "socketchatapp:build"
           }
         },
         "test": {
@@ -89,6 +96,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -111,15 +119,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "publico:serve"
+            "devServerTarget": "socketchatapp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "publico:serve:production"
+              "devServerTarget": "socketchatapp:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "publico"
+    }
+  },
+  "defaultProject": "socketchatapp"
 }

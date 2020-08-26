@@ -1,0 +1,105 @@
+<div class="signup-page" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="50px">
+    <mat-card fxFlexAlign="center" class="cardSignup">
+        <mat-card-title>
+            Sign up
+        </mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="formSignUp" novalidate>
+
+                <!-- Correo electronico -->
+
+                <mat-form-field class="signup-field" appearance="outline">
+                    <mat-label>Correo eléctronico</mat-label>
+                    <input matInput 
+                          type="mail"
+                          formControlName="correo">
+                          <mat-icon *ngIf="formSignUp.get('correo').valid && formSignUp.get('correo').touched" matSuffix>sentiment_very_satisfied</mat-icon>
+                          <mat-icon *ngIf="formSignUp.get('correo').invalid && formSignUp.get('correo').touched" matSuffix>sentiment_very_dissatisfied</mat-icon>
+                          <mat-error *ngIf="formSignUp.get('correo').hasError('required') && formSignUp.get('correo').touched">
+                            El campo es <strong>obligatorio</strong>
+                          </mat-error>
+                          <mat-error *ngIf="formSignUp.get('correo').hasError('pattern') && formSignUp.get('correo').touched">
+                            El correo electronico es <strong>invalido</strong>
+                          </mat-error>
+                </mat-form-field>
+
+
+                <!-- Contraseña -->
+
+                <mat-form-field class="signup-field" appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput 
+                        [type]="hide ? 'password' : 'text'"
+                        formControlName="pass">
+                    <mat-hint>* Minimo 6 caractes</mat-hint>
+                    <button mat-icon-button matSuffix (click)="hide = !hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="formSignUp.get('pass').hasError('required') && formSignUp.get('pass').touched">
+                    El campo es <strong>obligatorio</strong>
+                    </mat-error>
+                    <mat-error *ngIf="formSignUp.get('pass').hasError('minlength') && formSignUp.get('pass').touched">
+                    Minimo 6 caracteres
+                    </mat-error>
+                </mat-form-field>
+        
+        
+        
+                <!-- Repetir contraseña -->
+        
+                <mat-form-field class="signup-field" appearance="outline">
+                    <mat-label>Repetir contraseña</mat-label>
+                    <input matInput 
+                        [type]="hideR ? 'password' : 'text'"
+                        formControlName="repeatPass">
+                    <button mat-icon-button matSuffix (click)="hideR = !hideR">
+                    <mat-icon>{{hideR ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="formSignUp.get('repeatPass').hasError('required') && formSignUp.get('repeatPass').touched">
+                        El campo es <strong>obligatorio</strong>
+                    </mat-error>
+                    <mat-error *ngIf="formSignUp.get('repeatPass').hasError('noEsIgual') && formSignUp.get('repeatPass').touched">
+                    Las contraseñas no coinciden
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Nombre -->
+
+                <mat-form-field class="signup-field" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput 
+                           type="text"
+                           formControlName="nombre"/>                           
+                    <mat-icon *ngIf="formSignUp.get('nombre').valid && formSignUp.get('nombre').touched" matSuffix>sentiment_very_satisfied</mat-icon>
+                    <mat-icon *ngIf="formSignUp.get('nombre').invalid && formSignUp.get('nombre').touched" matSuffix>sentiment_very_dissatisfied</mat-icon>
+                    <mat-error *ngIf="formSignUp.get('nombre').hasError('required') && formSignUp.get('nombre').touched">
+                        El campo es <strong>obligatorio</strong>
+                    </mat-error>
+                </mat-form-field>
+
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+
+            <button mat-raised-button 
+                    color="primary"
+                    class="signup-field mb-2" 
+                    type="button"
+                    [disabled]="formSignUp.invalid"
+                    (click)="onSubmitGoogle()">
+                    <mat-icon>send</mat-icon> Registrar con Google
+            </button>
+
+            <button mat-raised-button 
+                color="primary"
+                class="signup-field mb-2"
+                style="margin: 0px;" 
+                type="button"
+                [disabled]="formSignUp.invalid"
+                (click)="onSubmitForm()">
+                <mat-icon>send</mat-icon> Registrar con Formulario Normal
+            </button>
+
+        </mat-card-actions>
+    </mat-card>
+</div>

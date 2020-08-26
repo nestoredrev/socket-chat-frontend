@@ -1,0 +1,14 @@
+.signup-page {
+    height: 100%;
+    width: 100%;
+}
+
+.signup-field {
+    width: 100%;
+}
+
+.cardSignup {
+    max-width: 600px;
+    margin: 0 auto;
+    top: 10%;
+}

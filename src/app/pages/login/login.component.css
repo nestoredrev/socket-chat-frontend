@@ -1,0 +1,21 @@
+.login-page {
+    height: 100%;
+    width: 100%;
+}
+
+.login-field {
+    width: 100%;
+}
+
+.cardLogin {
+    max-width: 400px;
+    margin: 0 auto;
+    top: 30%;
+}
+
+.errorLogin{
+    border: 1px solid red;
+    color: red;
+    text-align: center;
+    font-size: larger;
+}

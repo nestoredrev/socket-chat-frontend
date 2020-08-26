@@ -1,0 +1,55 @@
+mat-list-item:hover{
+    background-color: wheat;
+    border-radius: 10px;
+}
+
+
+.example-full-width{
+    width: 100%;
+}
+
+.estadoOnline{
+    color: green;
+}
+
+.estadoOffline{
+    color: red;
+}
+
+
+.msgBoxRight{
+    float: right;
+    width: 100%;
+    display: block;
+}
+
+.msgBoxRight mat-card{
+    float: right;
+    width: 100%;
+    display: block;
+    background-color: #adafb1;
+}
+
+.msgBoxLeft{
+    width: 100%;
+    float: left;
+    margin-left: 1px;
+}
+
+.msgBoxLeft mat-card{
+    width: 100%;
+    float: left;
+    background-color: #adf;
+}
+
+.boxWidth {
+    max-width: 350px;
+  }
+  
+
+#chatWindow{
+    overflow-y:scroll;
+    height:270px;
+    /* background:gray; */
+    padding: 5px;
+  }

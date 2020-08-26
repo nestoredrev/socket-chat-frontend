@@ -1,0 +1,59 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <!-- Sidemenu -->
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="false"
+      (click)="drawer.toggle()">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <app-menu-options></app-menu-options>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <!-- Navbar -->
+    <mat-toolbar>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <span class="logoHeader mr-5" (click)="goHome()">Cafe App</span>
+
+        <mat-nav-list *ngIf="(isHandset$ | async) === false">
+          <app-menu-options style="display: flex;"></app-menu-options>
+        </mat-nav-list>
+
+        <span class="example-spacer"></span>
+
+        <mat-form-field *ngIf="(isHandset$ | async) === false" class="example-icon mr-2" appearance="legacy">
+          <mat-label>Buscar</mat-label>
+          <input matInput>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <button
+        type="button"
+        mat-icon-button
+        (click)="logout()"
+        >
+        <mat-icon>logout</mat-icon>
+      </button>
+
+    </mat-toolbar>
+
+    <div class="container mt-2">
+      <!-- Load content of the components  -->
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- <app-footer></app-footer> -->
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

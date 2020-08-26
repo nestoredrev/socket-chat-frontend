@@ -1,0 +1,66 @@
+<div class="row">
+
+    <!-- Contactos -->
+    <div class="col-3" style="border-right: 1px solid red; padding: 0;">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Buscar contacto</mat-label>
+            <input matInput [(ngModel)]="termino" autocomplete="off">
+        </mat-form-field>
+
+        <mat-list>
+            <h2>Salas</h2>
+            <mat-list-item *ngFor="let sala of salas; let i = index;" (click)="initPrivateChat(sala, 'sala')">
+                <h3 matLine>{{ sala }}</h3>
+            </mat-list-item>
+            <h2>Usuarios</h2>
+            <mat-list-item *ngFor="let usuario of usuarios | buscar:termino; let i = index;" (click)="initPrivateChat(usuario.id, 'usuario', usuario.nombre)">
+              <img matListAvatar src="../../../assets/images/users/{{i+1}}.jpg" alt="...">
+              <h3 matLine *ngIf="usuario.nombre == sesionUsuario.usuario.nombre"> Yo </h3>
+              <h3 matLine *ngIf="usuario.nombre != sesionUsuario.usuario.nombre"> {{ usuario.nombre }} </h3>
+              <p matLine>
+                <span *ngIf="i % 2 === 0" class="estadoOffline"> Offline </span>
+                <span *ngIf="i % 2 !== 0" class="estadoOnline"> Online </span>
+              </p>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <!-- Chats -->
+    <div class="col-9">
+            
+        <h1 style="margin-left: 10px;">The Chat {{ tituloChat }}</h1>
+        
+        <div class="row" *ngFor="let message of conversacion; let i = index;" [ngClass]="{'msgBoxRight': message.nombre == sesionUsuario.usuario.nombre, 'msgBoxLeft': message.nombre != sesionUsuario.usuario.nombre }" >
+            <mat-card class="boxWidth mb-2">
+                
+                <mat-card-header>
+                    <img mat-card-avatar src="../../../assets/images/users/{{i+1}}.jpg" alt="imagen{{i+1}}">
+                    <mat-card-title>{{ message.nombre }}</mat-card-title>
+                    <mat-card-subtitle>{{ message.fecha | date:'H:mm' }}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <p> {{ message.mensaje }} </p>
+                  </mat-card-content>
+            </mat-card>
+        </div>
+
+        
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Mensaje</mat-label>
+            <input matInput 
+                    type="text"
+                    [(ngModel)]="mensaje"
+                    (keyup.enter)="enviarMensaje()"
+                    autofocus
+                    autocomplete="off" 
+                    >    
+            <button mat-icon-button type="button" color="accent" matSuffix (click)="enviarMensaje()">
+                <mat-icon>send</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+</div>
